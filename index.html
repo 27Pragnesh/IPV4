@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP Addressing Fundamentals</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Understanding IP Addressing</h1>
+            <p class="subtitle">A comprehensive guide to IPv4 fundamentals and practical problem solving</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#ipv4-structure">IPv4 Structure</a></li>
+                <li><a href="#subnetting">Subnetting</a></li>
+                <li><a href="#analyzer">IP Analyzer</a></li>
+                <li><a href="#conclusion">Conclusion</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section id="introduction" class="section">
+            <div class="container">
+                <h2>Introduction to IP Addressing</h2>
+                
+                <div class="content-grid">
+                    <div class="content-block">
+                        <h3>What is an IP Address?</h3>
+                        <p>An Internet Protocol (IP) address is a numerical label assigned to each device connected to a computer network that uses the Internet Protocol for communication. An IP address serves two main functions: host or network interface identification and location addressing. It's akin to a postal address for your computer on the internet, allowing data to be sent to the correct destination.</p>
+                        
+                        <p>Think of an IP address as the digital equivalent of your home address. Just as mail carriers use your postal address to deliver letters to your specific house, routers use IP addresses to deliver data packets to the correct device on a network. Without IP addresses, devices on the internet would have no way to find and communicate with each other.</p>
+                    </div>
+
+                    <div class="content-block">
+                        <h3>IPv4 vs. IPv6</h3>
+                        <p>There are two main versions of IP in use today: IPv4 and IPv6.</p>
+                        
+                        <div class="comparison-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Feature</th>
+                                        <th>IPv4</th>
+                                        <th>IPv6</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Address Length</td>
+                                        <td>32 bits</td>
+                                        <td>128 bits</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Format</td>
+                                        <td>192.168.1.1</td>
+                                        <td>2001:0db8:85a3::8a2e:0370:7334</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total Addresses</td>
+                                        <td>~4.3 billion</td>
+                                        <td>~340 undecillion</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Status</td>
+                                        <td>Widely used, nearing exhaustion</td>
+                                        <td>Future standard, growing adoption</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <p>This webpage focuses primarily on IPv4 due to its continued prevalence and the specific nature of the practical problems we'll be solving.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ipv4-structure" class="section">
+            <div class="container">
+                <h2>IPv4 Address Structure and Classes</h2>
+                
+                <div class="content-grid">
+                    <div class="content-block">
+                        <h3>IPv4 Address Structure</h3>
+                        <p>An IPv4 address is a 32-bit number divided into four 8-bit sections, known as octets. Each octet can range from 0 to 255 in decimal form, separated by dots. For example, in the address <code>192.168.1.10</code>, the values <code>192</code>, <code>168</code>, <code>1</code>, and <code>10</code> are the four octets.</p>
+                        
+                        <div class="ip-example">
+                            <div class="ip-visual">
+                                <div class="octet">192</div>
+                                <div class="dot">.</div>
+                                <div class="octet">168</div>
+                                <div class="dot">.</div>
+                                <div class="octet">1</div>
+                                <div class="dot">.</div>
+                                <div class="octet">10</div>
+                            </div>
+                            <div class="ip-labels">
+                                <span>Octet 1</span>
+                                <span>Octet 2</span>
+                                <span>Octet 3</span>
+                                <span>Octet 4</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-block">
+                        <h3>IP Address Classes</h3>
+                        <p>IPv4 addresses are categorized into different classes based on the value of their first octet. These classes determine how the 32 bits are divided into Network ID and Host ID portions.</p>
+                        
+                        <div class="classes-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Class</th>
+                                        <th>First Octet Range</th>
+                                        <th>Network Bits</th>
+                                        <th>Host Bits</th>
+                                        <th>Default Subnet Mask</th>
+                                        <th>Purpose</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="class-a">
+                                        <td><strong>A</strong></td>
+                                        <td>1-126</td>
+                                        <td>8</td>
+                                        <td>24</td>
+                                        <td>255.0.0.0</td>
+                                        <td>Large networks</td>
+                                    </tr>
+                                    <tr class="class-b">
+                                        <td><strong>B</strong></td>
+                                        <td>128-191</td>
+                                        <td>16</td>
+                                        <td>16</td>
+                                        <td>255.255.0.0</td>
+                                        <td>Medium-sized networks</td>
+                                    </tr>
+                                    <tr class="class-c">
+                                        <td><strong>C</strong></td>
+                                        <td>192-223</td>
+                                        <td>24</td>
+                                        <td>8</td>
+                                        <td>255.255.255.0</td>
+                                        <td>Small networks</td>
+                                    </tr>
+                                    <tr class="class-d">
+                                        <td><strong>D</strong></td>
+                                        <td>224-239</td>
+                                        <td>N/A</td>
+                                        <td>N/A</td>
+                                        <td>N/A</td>
+                                        <td>Multicast</td>
+                                    </tr>
+                                    <tr class="class-e">
+                                        <td><strong>E</strong></td>
+                                        <td>240-255</td>
+                                        <td>N/A</td>
+                                        <td>N/A</td>
+                                        <td>N/A</td>
+                                        <td>Experimental</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="note">
+                            <p><strong>Note:</strong> The range 127.0.0.0 to 127.255.255.255 (specifically 127.0.0.1) is reserved for loopback addresses and is not assigned to any specific class for general use.</p>
+                        </div>
+                    </div>
+
+                    <div class="content-block">
+                        <h3>Network ID and Host ID</h3>
+                        <p>Every IPv4 address is composed of two parts: the Network ID and the Host ID.</p>
+                        
+                        <div class="id-explanation">
+                            <div class="id-block">
+                                <h4>Network ID</h4>
+                                <p>This portion identifies the specific network to which a device is connected. All devices on the same local network share the same Network ID. It's like the street name and city in a postal address.</p>
+                            </div>
+                            <div class="id-block">
+                                <h4>Host ID</h4>
+                                <p>This portion identifies a specific device (host) within that network. Each device on a network must have a unique Host ID. It's like the house number in a postal address.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="examples">
+                            <h4>Examples:</h4>
+                            <div class="example-item">
+                                <strong>Class A:</strong> <code>10.1.2.3</code><br>
+                                Network ID: <code>10.0.0.0</code> | Host ID: <code>1.2.3</code>
+                            </div>
+                            <div class="example-item">
+                                <strong>Class B:</strong> <code>172.16.1.2</code><br>
+                                Network ID: <code>172.16.0.0</code> | Host ID: <code>1.2</code>
+                            </div>
+                            <div class="example-item">
+                                <strong>Class C:</strong> <code>192.168.1.100</code><br>
+                                Network ID: <code>192.168.1.0</code> | Host ID: <code>100</code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="subnetting" class="section">
+            <div class="container">
+                <h2>Subnetting Basics</h2>
+                
+                <div class="content-grid">
+                    <div class="content-block">
+                        <h3>What is Subnetting?</h3>
+                        <p>Subnetting is the process of dividing a single large network into smaller, more manageable subnetworks (subnets). This is done by taking bits from the Host ID portion of an IP address and using them for the Network ID. This creates more, smaller networks and fewer hosts per network.</p>
+                        
+                        <div class="benefits">
+                            <h4>Benefits of Subnetting:</h4>
+                            <ul>
+                                <li><strong>Improved Network Performance:</strong> By reducing the size of broadcast domains, subnetting can decrease network congestion and improve overall performance.</li>
+                                <li><strong>Enhanced Security:</strong> Subnetting allows for better control over network traffic, making it easier to isolate sensitive data and restrict access.</li>
+                                <li><strong>Efficient IP Address Utilization:</strong> It helps in making more efficient use of the available IP addresses, especially in organizations with many departments or locations.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="content-block">
+                        <h3>Subnet Masks</h3>
+                        <p>Subnetting involves the use of a <strong>subnet mask</strong>, which is a 32-bit number that distinguishes the Network ID from the Host ID. The subnet mask has a series of <code>1</code>s for the network portion and <code>0</code>s for the host portion.</p>
+                        
+                        <div class="subnet-example">
+                            <p>For example, a Class C default subnet mask is <code>255.255.255.0</code>, which in binary is:</p>
+                            <code>11111111.11111111.11111111.00000000</code>
+                        </div>
+                        
+                        <p>When subnetting, you borrow bits from the host portion to create new subnets. The number of borrowed bits determines the number of subnets and the number of hosts per subnet. This concept is crucial for network administrators to efficiently manage their network resources.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="analyzer" class="section analyzer-section">
+            <div class="container">
+                <h2>Interactive IP Address Analyzer</h2>
+                <p class="section-description">Test your understanding with our interactive IP address analyzer. Enter an IPv4 address below to see its validity, class, Network ID, and Host ID.</p>
+                
+                <div class="analyzer-container">
+                    <div class="input-group">
+                        <input type="text" id="ipInput" placeholder="Enter IPv4 address (e.g., 192.168.1.1)" autocomplete="off">
+                        <button id="analyzeBtn">Analyze IP</button>
+                    </div>
+                    
+                    <div id="results" class="results-container">
+                        <div class="placeholder">
+                            <p>Enter an IP address above to see the analysis results</p>
+                        </div>
+                    </div>
+                    
+                    <div class="example-problems">
+                        <h3>Try These Example Problems:</h3>
+                        <div class="examples-grid">
+                            <button class="example-btn" data-ip="1.0.4.5">1.0.4.5</button>
+                            <button class="example-btn" data-ip="80.54.256.14">80.54.256.14</button>
+                            <button class="example-btn" data-ip="11.025.56.8">11.025.56.8</button>
+                            <button class="example-btn" data-ip="192.108.102.101">192.108.102.101</button>
+                            <button class="example-btn" data-ip="1.100.11100010.10">1.100.11100010.10</button>
+                            <button class="example-btn" data-ip="228.4.10.25.208">228.4.10.25.208</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="conclusion" class="section">
+            <div class="container">
+                <h2>Conclusion and Further Learning</h2>
+                
+                <div class="content-grid">
+                    <div class="content-block">
+                        <h3>Key Takeaways</h3>
+                        <p>Understanding IP addressing is fundamental to networking. You've learned about IPv4 structure, address classes, and the concepts of Network ID and Host ID. These concepts form the foundation for more advanced networking topics.</p>
+                        
+                        <div class="key-points">
+                            <ul>
+                                <li>IPv4 addresses consist of four octets, each ranging from 0 to 255</li>
+                                <li>Address classes (A, B, C) determine the division between Network ID and Host ID</li>
+                                <li>Subnetting allows for efficient network management and improved security</li>
+                                <li>Proper IP address validation is crucial for network functionality</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="content-block">
+                        <h3>Further Learning Resources</h3>
+                        <p>To deepen your understanding of networking concepts, consider exploring these advanced topics:</p>
+                        
+                        <div class="resources">
+                            <ul>
+                                <li><strong>CIDR (Classless Inter-Domain Routing):</strong> Modern approach to IP addressing that replaces the traditional class system</li>
+                                <li><strong>VLSM (Variable Length Subnet Masking):</strong> Advanced subnetting technique for efficient IP address utilization</li>
+                                <li><strong>IPv6:</strong> The next generation of Internet Protocol with expanded address space</li>
+                                <li><strong>Routing Protocols:</strong> How routers communicate and share network information</li>
+                                <li><strong>Network Security:</strong> Protecting networks through proper IP address management and access control</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Manus AI. All rights reserved.</p>
+            <p>Created for educational purposes to help students understand IP addressing fundamentals.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
